@@ -1,0 +1,49 @@
+syntax = "proto3";
+
+package calc_growth;
+
+service CalcGrowthService {
+    rpc GetCalcIndexGrowth (GetCalcIndexGrowthRequest) returns (GetCalcIndexGrowthResponse) {}
+    rpc GetCalcCategoryGrowth (GetCalcCategoryGrowthRequest) returns (GetCalcCategoryGrowthResponse) {}
+    rpc GetCalcStrategyGrowth (GetCalcStrategyGrowthRequest) returns (GetCalcStrategyGrowthResponse) {}
+}
+
+message Growth {
+    string date = 1;
+    double start_day_investment = 2;
+    double end_day_investment = 3;
+}
+
+message GetCalcIndexGrowthRequest {
+    string token = 1;
+    float initial_investment = 2;
+    string start_date = 3;
+    string end_date = 4;
+}
+
+message GetCalcIndexGrowthResponse {
+    repeated Growth growths = 1;
+}
+
+message GetCalcCategoryGrowthRequest {
+    string category = 1;
+    float initial_investment = 2;
+    string start_date = 3;
+    string end_date = 4;
+}
+
+message GetCalcCategoryGrowthResponse {
+    repeated Growth growths = 1;
+    int32 total_strategy = 2;
+}
+
+message GetCalcStrategyGrowthRequest {
+    string strategy = 1;
+    float initial_investment = 2;
+    string start_date = 3;
+    string end_date = 4;
+}
+
+message GetCalcStrategyGrowthResponse {
+    repeated Growth growths = 1;
+}
